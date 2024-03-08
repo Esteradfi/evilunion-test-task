@@ -3,7 +3,7 @@ import {FIRST_POKEMON} from "@/app/api";
 import {pokemonListState, pokemonQuery} from "@/app/reсoil";
 import styles from "./Main.module.css";
 import Header from "@/app/components/Header/Header";
-import {Container} from "@mui/material";
+import {Box, Container} from "@mui/material";
 
 const Main = () => {
     const [pokemonList, setPokemonList] = useRecoilStateLoadable(pokemonListState);
@@ -12,7 +12,9 @@ const Main = () => {
     return (
         <Container component={'main'} className={styles.main}>
             <Header />
-            <h2>Hi</h2>
+            <Box component={'section'} sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+
+            </Box>
         </Container>
     )
 };
