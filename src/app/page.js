@@ -1,14 +1,13 @@
 'use client'
-import {RecoilRoot, useRecoilState} from "recoil";
-import {pokemonListState} from "@/app/reсoil";
-import Main from "@/app/components/Main";
+import {RecoilRoot} from "recoil";
+import Main from "@/app/components/Main/Main";
 
 
 export default function Home() {
 
     return (
         <RecoilRoot>
-            <Main />
+            <Main/>
         </RecoilRoot>
     );
 }

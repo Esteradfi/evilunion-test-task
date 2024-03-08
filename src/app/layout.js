@@ -1,4 +1,4 @@
-import { Raleway } from "next/font/google";
+import {Raleway} from "next/font/google";
 import "./globals.css";
 
 const raleway = Raleway({
@@ -8,14 +8,14 @@ const raleway = Raleway({
 });
 
 export const metadata = {
-  title: "EvilUnion Test",
-  description: "Test task",
+    title: "EvilUnion Test",
+    description: "Test task",
 };
 
-export default function RootLayout({ children }) {
-  return (
-    <html lang="ru">
-      <body className={raleway.className}>{children}</body>
-    </html>
-  );
+export default function RootLayout({children}) {
+    return (
+        <html lang="ru">
+        <body className={raleway.className}>{children}</body>
+        </html>
+    );
 }

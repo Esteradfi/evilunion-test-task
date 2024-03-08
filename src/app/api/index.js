@@ -1,28 +1,25 @@
 import axios from "axios";
 
-export const API_URL = 'https://pokeapi.co/api/v2/';
-
-const $api = axios.create({
-    baseURL: API_URL,
-});
-
+export const FIRST_POKEMON = 'https://pokeapi.co/api/v2/pokemon/1' //Ссылка для запроса первого покемона
 
 //Запрос на получение списка покемонов
 export const getPokemonList = async () => {
     try {
-        const response = await $api.get('pokemon?limit=5');
+        const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=10');
         return response.data.results;
     } catch (error) {
         throw error;
     }
 }
 
-export const getPokemon = async (id) => {
+
+//Запрос на получение данных о покемоне
+export const getPokemon = async (url) => {
     try {
-        const response = await $api.get(`pokemon/${id}/`);
+        const response = await axios.get(`${url}`);
         return {
             name: response.data.name,
-            id: id,
+            id: response.data.id,
             height: response.data.height,
             moves: response.data.moves.length,
             attack: response.data.stats.find(item => item.stat.name === 'attack').base_stat,
@@ -32,5 +29,3 @@ export const getPokemon = async (id) => {
         throw error;
     }
 }
-
-export default $api;
