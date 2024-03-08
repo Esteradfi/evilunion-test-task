@@ -1,10 +1,10 @@
-import styles from "./Header.module.css";
 import {Box, Typography} from "@mui/material";
 import Image from "next/image";
 
 const Header = () => {
     return (
-        <Box component={'header'} className={styles.header}>
+        <Box component={'header'}
+             sx={{marginBottom: '55px', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
             <Typography component={"span"} sx={{
                 p: 1,
                 border: '1px solid #ffffff',

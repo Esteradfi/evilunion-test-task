@@ -8,7 +8,7 @@ import themeConfig from "@/app/theme";
 
 
 export default function Home() {
-    const isSmallScreen = useMediaQuery(themeConfig.breakpoints.down('sm'));
+    const isSmallScreen = useMediaQuery(themeConfig.breakpoints.down('sm')); //Для настройки стилей при малых разрешениях экрана
 
     return (
         <ThemeProvider theme={themeConfig}>

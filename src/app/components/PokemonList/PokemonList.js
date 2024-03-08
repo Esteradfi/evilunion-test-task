@@ -5,15 +5,16 @@ import {FIRST_POKEMON, getPokemon} from "@/app/api";
 import {useState} from "react";
 
 const PokemonList = () => {
+    //Для настройки стилей при малых разрешениях экрана
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-    const pokemonList = useRecoilValueLoadable(pokemonListQuery);
-    const [pokemonUrl, setPokemonUrl] = useRecoilState(curPokemonUrl);
+    const pokemonList = useRecoilValueLoadable(pokemonListQuery); //Запрос на получение списка из 10 покемонов
+    const [pokemonUrl, setPokemonUrl] = useRecoilState(curPokemonUrl); //Для смены выбранного покемона кликом по кнопке с url
 
 
     switch (pokemonList.state) {
-        case 'hasValue':
+        case 'hasValue': // Если получен ответ на запрос к API
             const pokemonItems = pokemonList.contents.map(item => (
                 <Chip
                     key={item.url}
@@ -44,7 +45,7 @@ const PokemonList = () => {
                 }}>
                     {pokemonItems}
                 </Box>);
-        case 'loading':
+        case 'loading':  //Ожидание ответа на запрос к API
             return (
                 <Box suppressHydrationWarning
                      sx={{
@@ -55,7 +56,7 @@ const PokemonList = () => {
                      }}>
                     Загрузка покемона...
                 </Box>);
-        case 'hasError':
+        case 'hasError': // Если запрос к API вернул ошибку
             throw pokemonList.contents;
     }
 };

@@ -3,7 +3,7 @@ const nextConfig = {
     images: {
         remotePatterns: [
             {
-                hostname: 'raw.githubusercontent.com',
+                hostname: 'raw.githubusercontent.com', //Настройка для подгрузки картинок с внешних источников
             }
         ]
     }

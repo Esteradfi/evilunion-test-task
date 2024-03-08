@@ -6,15 +6,17 @@ import {normalizeCountForm} from "@/app/utils/normalizeCountForm";
 import Image from "next/image";
 
 const PokemonCard = () => {
+    //Для настройки стилей при малых разрешениях экрана
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-    const [pokemonUrl, setPokemonUrl] = useRecoilState(curPokemonUrl);
-    const pokemon = useRecoilValueLoadable(pokemonQuery(pokemonUrl));
-    const wordForm = normalizeCountForm(pokemon.contents.moves, ['серии', 'сериях']);
+    const [pokemonUrl, setPokemonUrl] = useRecoilState(curPokemonUrl); //Отслеживаем текущий url
+    const pokemon = useRecoilValueLoadable(pokemonQuery(pokemonUrl)); //Запрос на получение покемона по url
+
+    const wordForm = normalizeCountForm(pokemon.contents.moves, ['серии', 'сериях']); //Выбор формы слова в зависимости от числа
 
     switch (pokemon.state) {
-        case 'hasValue':
+        case 'hasValue': // Если получен ответ на запрос к API
             return (
                 <Box sx={{
                     width: isSmallScreen ? '100%' : '49.38%',
@@ -48,7 +50,7 @@ const PokemonCard = () => {
                     </Typography>
                 </Box>
             );
-        case 'loading':
+        case 'loading': //Ожидание ответа на запрос к API
             return (
                 <Box suppressHydrationWarning
                      sx={{
@@ -61,7 +63,7 @@ const PokemonCard = () => {
                      }}>
                     Загрузка покемона...
                 </Box>);
-        case 'hasError':
+        case 'hasError': // Если запрос к API вернул ошибку
             throw pokemon.contents;
     }
 };
