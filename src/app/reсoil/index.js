@@ -1,25 +1,23 @@
 import {atom, selector, selectorFamily} from 'recoil';
-import $api, {getPokemon, getPokemonList} from "@/app/api";
+import $api, {FIRST_POKEMON, getPokemon, getPokemonList} from "@/app/api";
 
 export const pokemonListQuery = selector({
     key: 'pokemonListQuery',
     get: async ({ get }) => {
         try {
             const response = await getPokemonList();
-            console.log(response);
             return response || [];
         } catch (error) {
-            throw error;
+            console.log(error);
+            return [];
         }
     }
 });
 
-// Атом для хранения списка покемонов
-export const pokemonListState = atom({
-    key: 'pokemonListState',
-    default: pokemonListQuery,
-});
-
+export const curPokemonUrl = atom({
+    key: "curPokemonUrl",
+    default: FIRST_POKEMON
+})
 
 //Данные о покемоне
 export const pokemonQuery = selectorFamily({
@@ -29,7 +27,8 @@ export const pokemonQuery = selectorFamily({
             const response = await getPokemon(pokemonUrl);
             return response;
         } catch (error) {
-            throw error;
+            console.log(error);
+            return null;
         }
     }
 });
